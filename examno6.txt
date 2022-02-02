@@ -1,0 +1,52 @@
+6. Use your eloquent relationships for creating and 
+retrieving the data from your database.
+
+
+
+answer
+Insert Records
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\User;
+use App\Mobile;
+use Hash;
+
+class UserController extends Controller
+{
+    public function addUserMobile()
+    {
+        $user = new User;
+        $user->name = "Test Name";
+        $user->email = "test@mnp.com";
+        $user->password = Hash::make("12345678");
+        $user->save();
+
+        $mobile = new Mobile;
+        $mobile->mobile = '123456789';
+        $user->mobile()->save($mobile);
+    }
+}
+
+
+
+
+
+Retrieve Records
+public function index()
+{
+    // get user and mobile data from User model
+    $user = User::find(1);
+    var_dump($user->name);
+    var_dump($user->mobile->mobile);
+
+    // get user data from Mobile model
+    $user = Mobile::find(1)->user;
+    dd($user);
+
+    // get mobile number from User model
+    $mobile = User::find(1)->mobile;
+    dd($mobile);
+}
