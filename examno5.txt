@@ -1,0 +1,14 @@
+5. Create a loop (random number of iterations from 5-10) and 
+inside that, we need to generate a random name for its value which 
+we will save in Random (table) together with another loop 
+(random number of iterations from 5-10) that will generate a random 5-character 
+( alphanumeric ) string for the breakdown (table)
+
+answer
+set.seed(2)
+times=5
+m=matrix(nrow=times, ncol=10)
+for (i in 1:times){
+m[i,]=sample(1:10, 10, replace=F)
+}
+m
